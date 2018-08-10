@@ -180,7 +180,7 @@
             "name": "installationSize",
             "type": "Microsoft.Common.DropDown",
             "label": "TeamCity installation size",
-            "toolTip": "TeamCity installation size: typical usage for Small - 3 users, 100 builds/day; Medium - 5 users, 300 builds/day; Large - 20 users, 1000 builds/day",
+            "toolTip": "TeamCity installation size: typical usage for Small - 3 users, 100 builds/day; Medium - 5 users, 300 builds/day; Large - 20 users, 1000 builds/day; GPU - Similar capacity to Large, but adds GPU capability",
             "defaultValue": "Medium",
             "constraints": {
               "allowedValues": [
@@ -195,6 +195,10 @@
                 {
                   "label": "Large",
                   "value": "Large"
+                },
+                {
+                  "label": "GPU",
+                  "value": "GPU"
                 }
               ]
             }

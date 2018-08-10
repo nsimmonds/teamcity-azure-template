@@ -24,10 +24,11 @@
       "allowedValues": [
         "Small",
         "Medium",
-        "Large"
+        "Large",
+        "GPU"
       ],
       "metadata": {
-        "description": "TeamCity installation size: typical usage for Small - 3 users, 100 builds/day; Medium - 5 users, 300 builds/day; Large - 20 users, 1000 builds/day"
+        "description": "TeamCity installation size: typical usage for Small - 3 users, 100 builds/day; Medium - 5 users, 300 builds/day; Large - 20 users, 1000 builds/day; GPU - Similar capacity to Large, but adds GPU capability"
       }
     },
     "VMAdminUsername": {
@@ -60,7 +61,7 @@
     "networkSubnet": "[concat(resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName')), '/subnets/default')]",
     "networkSecurityGroupName": "teamcity-nsg",
     "vmName": "teamcity",
-    "vmSize": "[if(equals(parameters('installationSize'), 'Small'), 'Standard_A2_v2', if(equals(parameters('installationSize'), 'Medium'), 'Standard_F2s', 'Standard_F4s'))]",
+    "vmSize": "[if(equals(parameters('installationSize'), 'Small'), 'Standard_A2_v2', if(equals(parameters('installationSize'), 'Medium'), 'Standard_F2s', if(equals(parameters('installationSize'), 'GPU'), 'Standard_NC6s_v2', 'Standard_F4s'))]",
     "vmDataDisk": "[if(equals(parameters('installationSize'), 'Small'), 32, if(equals(parameters('installationSize'), 'Medium'), 64, 128))]",
     "storageType": "[if(contains(toLower(substring(variables('VMSize'), 9)), 's'), 'Premium_LRS', 'Standard_LRS')]",
     "sshKeyPath": "[concat('/home/',parameters('VMAdminUsername'),'/.ssh/authorized_keys')]",
